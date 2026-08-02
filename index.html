@@ -9,6 +9,20 @@
     <link href="./src/swiper-bundle.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="./image/fav-icon.png" type="image/x-icon">
 
+    <style>
+        * {
+            text-decoration: none !important;
+        }
+
+        a,
+        area,
+        link {
+            text-decoration: none !important;
+            text-decoration-line: none !important;
+            -moz-text-decoration-line: none !important;
+        }
+    </style>
+
     <script type="text/javascript">
         document.documentElement.classList.toggle(
             "dark",
@@ -20,21 +34,6 @@
 
 <body class="font-dana  bg-gray-100 dark:bg-zinc-800">
 
-    <style>
-        /* استایل override برای فایرفاکس */
-        a, a:link, a:visited, a:hover, a:active, a:focus {
-            text-decoration: none !important;
-            text-decoration-line: none !important;
-            -moz-text-decoration-line: none !important;
-            -moz-text-decoration-color: transparent !important;
-            text-decoration-color: transparent !important;
-        }
-        /* برای اطمینان بیشتر */
-        *:not(.no-underline) > a, a:not(.no-underline) {
-            text-decoration: none !important;
-        }
-    </style>
- 
 
     <!-- all app icon -->
     <svg class="hidden">
