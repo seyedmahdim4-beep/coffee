@@ -71,3 +71,15 @@ submenuItem.forEach(item => {
         this.classList.add('submenu--item--active');
     });
 });
+
+
+// حذف زیرخط لینک‌ها در فایرفاکس
+document.addEventListener('DOMContentLoaded', function() {
+    const allLinks = document.querySelectorAll('a');
+    allLinks.forEach(function(link) {
+        link.style.textDecoration = 'none';
+        link.style.textDecorationLine = 'none';
+        link.style.setProperty('text-decoration', 'none', 'important');
+        link.style.setProperty('text-decoration-line', 'none', 'important');
+    });
+});
