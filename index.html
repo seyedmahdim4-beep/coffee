@@ -19,6 +19,23 @@
 </head>
 
 <body class="font-dana  bg-gray-100 dark:bg-zinc-800">
+
+    <style>
+        /* استایل override برای فایرفاکس */
+        a, a:link, a:visited, a:hover, a:active, a:focus {
+            text-decoration: none !important;
+            text-decoration-line: none !important;
+            -moz-text-decoration-line: none !important;
+            -moz-text-decoration-color: transparent !important;
+            text-decoration-color: transparent !important;
+        }
+        /* برای اطمینان بیشتر */
+        *:not(.no-underline) > a, a:not(.no-underline) {
+            text-decoration: none !important;
+        }
+    </style>
+ 
+
     <!-- all app icon -->
     <svg class="hidden">
         <symbol id="shopping-card" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
