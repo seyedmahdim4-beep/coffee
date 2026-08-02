@@ -73,13 +73,37 @@ submenuItem.forEach(item => {
 });
 
 
-// حذف زیرخط لینک‌ها در فایرفاکس
-document.addEventListener('DOMContentLoaded', function() {
-    const allLinks = document.querySelectorAll('a');
-    allLinks.forEach(function(link) {
-        link.style.textDecoration = 'none';
-        link.style.textDecorationLine = 'none';
-        link.style.setProperty('text-decoration', 'none', 'important');
-        link.style.setProperty('text-decoration-line', 'none', 'important');
-    });
-});
+// حذف کامل زیرخط لینک‌ها برای فایرفاکس
+(function() {
+    function removeAllUnderlines() {
+        var links = document.querySelectorAll('a');
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            // تنظیم مستقیم استایل
+            link.style.setProperty('text-decoration', 'none', 'important');
+            link.style.setProperty('text-decoration-line', 'none', 'important');
+            link.style.textDecoration = 'none';
+            link.style.textDecorationLine = 'none';
+            
+            // برای اطمینان بیشتر در فایرفاکس
+            link.style.MozTextDecorationColor = 'transparent';
+            link.style.MozTextDecorationLine = 'none';
+        }
+        console.log('تعداد لینک‌های اصلاح شده:', links.length);
+    }
+
+    // اجرا بعد از بارگذاری کامل صفحه
+    if (document.readyState === 'complete') {
+        removeAllUnderlines();
+    } else {
+        window.addEventListener('load', removeAllUnderlines);
+    }
+    
+    // اجرا دوباره بعد از هر تغییر در DOM (برای لینک‌های داینامیک)
+    if (window.MutationObserver) {
+        var observer = new MutationObserver(function() {
+            removeAllUnderlines();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+})();
