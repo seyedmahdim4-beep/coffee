@@ -1,84 +1,84 @@
+const BASE = import.meta.env.BASE_URL;
+
 export const productsData = [
   {
     id: "1",
     name: "قهوه ترک بن مانو 250 گرمی",
-    img: "/coffee/image/products/p1.png",
+    img: `${BASE}image/products/p1.png`,
     off: "12%",
     disCount: "700,000",
     price: "616,000",
     gStar: "2",
-    sStar: "3"
+    sStar: "3",
   },
   {
     id: "2",
     name: "قهوه مانوکا بن مانو 250 گرمی",
-    img: "/coffee/image/products/p2.png",
+    img: `${BASE}image/products/p2.png`,
     off: "",
     disCount: "",
     price: "890,000",
     gStar: "4",
-    sStar: "1"
+    sStar: "1",
   },
   {
     id: "3",
     name: "قهوه پریسکا بن مانو 250 گرمی",
-    img: "/coffee/image/products/p3.png",
+    img: `${BASE}image/products/p3.png`,
     off: "",
     disCount: "",
     price: "",
     gStar: "3",
-    sStar: "2"
+    sStar: "2",
   },
   {
     id: "4",
     name: "قهوه آرتیمان بن مانو مقدار 250 گرمی",
-    img: "/coffee/image/products/p4.png",
+    img: `${BASE}image/products/p4.png`,
     off: "",
     disCount: "",
     price: "1,457,700",
     gStar: "5",
-    sStar: "0"
+    sStar: "0",
   },
   {
     id: "5",
     name: "قهوه بن مانو نورسکا 9صبح ، بسته 6عددی",
-    img: "/coffee/image/products/p5.png",
+    img: `${BASE}image/products/p5.png`,
     off: "10%",
     disCount: "1,197,000",
     price: "1,017,000",
     gStar: "4",
-    sStar: "1"
+    sStar: "1",
   },
   {
     id: "6",
     name: "قهوه بن مانو نورسکا 6عصر ، بسته 6عددی",
-    img: "/coffee/image/products/p6.png",
+    img: `${BASE}image/products/p6.png`,
     off: "",
     disCount: "",
     price: "280,000",
     gStar: "2",
-    sStar: "3"
+    sStar: "3",
   },
   {
     id: "7",
     name: "قهوه بن مانو نورسکا 8شب ، بسته 6عددی",
-    img: "/coffee/image/products/p7.png",
+    img: `${BASE}image/products/p7.png`,
     off: "",
     disCount: "",
     price: "292,000",
     gStar: "1",
-    sStar: "4"
+    sStar: "4",
   },
   {
     id: "8",
     name: "قهوه بن مانو نورسکا 2ظهر ، بسته 6عددی",
-    img: "/coffee/image/products/p8.png",
+    img: `${BASE}image/products/p8.png`,
     off: "15%",
     disCount: "325,000",
     price: "277,000",
     gStar: "4",
-    sStar: "1"
-  }
-]
-
-
+    sStar: "1",
+  },
+];
