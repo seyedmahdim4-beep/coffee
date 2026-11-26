@@ -7,7 +7,7 @@ function EachCategory({tittle,img}) {
                 <img src={img} loading="lazy" alt="img"></img>
             </a>
             <span
-                className="inline-block font-dana-DemiBold text-sm md:text-xl text-zinc-700 dark:text-white mt-1.5 md:mt-2.5">قهوه
+                className="inline-block font-dana-DemiBold text-sm md:text-xl text-zinc-700 dark:text-white mt-1.5 md:mt-2.5">
                  {tittle}
                 </span>
         </div>

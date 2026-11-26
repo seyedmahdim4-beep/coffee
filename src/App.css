@@ -141,11 +141,11 @@
 
 @media screen and (min-width:1280px) {
     html.dark .products {
-        background: url("../image/product-bg.png");
+        background: url("../public/image/product-bg.png");
     }
 
     .products {
-        background: linear-gradient(rgba(243, 244, 246, 0.2), rgba(243, 244, 246, 0.65)), url("../image/product-bg.png");
+        background: linear-gradient(rgba(243, 244, 246, 0.2), rgba(243, 244, 246, 0.65)), url("../public/image/product-bg.png");
         background-repeat: no-repeat;
         background-size: 100%;
     }
@@ -166,14 +166,23 @@
 }
 
 .category-banner--item1 {
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0.6)33.85%, rgba(243, 244, 246, 0.1)100%), url("../image/categories/category-right.jpg");
+    background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0.6) 33.85%,
+        rgba(243, 244, 246, 0.1) 100%
+    ), url("/image/categories/category-right.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .category-banner--item2 {
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0.6)33.85%, rgba(243, 244, 246, 0.1)100%), url("../image/categories/category-left.jpg");
+    background: linear-gradient(
+        270deg,
+        rgba(0, 0, 0, 0.6) 33.85%,
+        rgba(243, 244, 246, 0.1) 100%
+    ), url("/image/categories/category-left.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .services {
@@ -213,7 +222,7 @@ html.dark .services::before {
     height: 1px;
 }
 
-.ltr-text{
+.ltr-text {
     direction: ltr;
     text-align: left;
 }
@@ -227,8 +236,29 @@ a:-moz-any-link {
     -moz-text-decoration-color: transparent !important;
 }
 
+/* اسکرول‌بار در حالت دارک */
+.dark *::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dark *::-webkit-scrollbar-track {
+    background: #27272a;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+    background: #171717;
+    border-radius: 10px;
+}
+
 /* برای همه لینک‌ها */
-a, a:link, a:visited, a:hover, a:active {
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
     text-decoration: none !important;
     text-decoration-line: none !important;
+}
+.perspective-1000 {
+    perspective: 1000px;
 }

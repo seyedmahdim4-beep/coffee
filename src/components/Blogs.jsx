@@ -6,7 +6,7 @@ function Blogs() {
     const [carts] = useState(BlogsData)
 
     return (
-        <section className="blogs mb-8 md:mb-28">
+        <section id='blogs' className="blogs mb-8 md:mb-28 scroll-mt-40">
 
             <div>
                 {/* <!-- section header --> */}

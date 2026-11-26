@@ -1,11 +1,10 @@
 import React from 'react'
-
 function Home() {
   return (
     <>
     
             <section
-            className="home bg-home relative bg-center-top h-50 xs:h-auto xs:aspect-[2/1] md:aspect-auto bg-no-repeat bg-cover ">
+            className=" home bg-home relative bg-center-top h-50 xs:h-auto xs:aspect-[2/1] md:aspect-auto bg-no-repeat bg-cover ">
 
             <div className="container relative overflow-y-hidden h-full md:min-h-screen flex justify-end items-center">
 

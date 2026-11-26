@@ -11,31 +11,50 @@ import ContactUs from './components/ContactUs'
 import Services from './components/Services'
 import CoffeeClub from './components/CoffeeClub'
 import Blogs from './components/Blogs'
-function App() {
+import './App.css'
+import { productsData } from './data/ProductsData';
 
+
+
+
+function App() {
+  const [products, setProducts] = useState(productsData)
   const [shoppingOpen, setShoppingOpen] = useState(false);
 
+
   return (
-    <>
-      <Header setShoppingOpen={setShoppingOpen} />
-      <Shopping
-        setShoppingOpen={setShoppingOpen}
-        shoppingOpen={shoppingOpen}
-      />
-      <Home/>
-      <Products/>
-      <CategoryBanner/>
-      <Category/>
-      <BestSells/>
-      <CoffeeClub/>
-      <Blogs/>
-      <ContactUs/>
-      <Services/>
-      <Footer/>
+    < >
+      
+        <Header setShoppingOpen={setShoppingOpen} />
+        <Shopping
+          setShoppingOpen={setShoppingOpen}
+          shoppingOpen={shoppingOpen}
+          
+        />
+        <Home />
+        <Products
+          products={products}
+          setProducts={setProducts} />
+        <CategoryBanner />
+        <Category />
+        <BestSells />
+        <CoffeeClub />
+        <Blogs />
+        <ContactUs />
+        <Services />
+        <Footer />
+      
+
+
+
+
+
+
 
 
 
     </>
+
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 function ContactUs() {
   return (
-     <section className="contact-us mb-16 md:mb-28 mx-[8%]">
+     <section id='contact-us' className="contact-us mb-16 md:mb-28 mx-[8%] scroll-mt-40">
             <div className="container">
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-y-8 lg:gap-x-5">
                     <img src="image/contact.png" alt="img" className="w-74 h-74 shrink-0"></img>

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className="relative bg-zinc-700 py-8 md:pb-11 pt-16  ">
+    <footer id='about-us' className="relative bg-zinc-700 py-8 md:pb-11 pt-16  ">
 
         <svg className="absolute -top-0.5 right-0 left-0 mx-auto inline-block text-gray-100 dark:text-zinc-800 w-25 h-6">
             <use href="#curve-footer"></use>

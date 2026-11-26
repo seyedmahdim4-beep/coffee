@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { Activity } from 'react'
 function BestProduct({ id, name, img, off, disCount, price, gStar, sStar }) {
 
     return (
@@ -10,7 +10,7 @@ function BestProduct({ id, name, img, off, disCount, price, gStar, sStar }) {
 
                 {off && (
                     <span
-                        className="absolute -top-2 -right-3 md:top-1.5 md:right-1.5 block h-5 md:h-7.5 text-xs md:text-base leading-6 md:leading-9 px-2.5 md:px-3.5 rounded-full font-dana-DemiBold text-white dark:text-zinc-700 bg-orange-300">{off}</span>
+                        className="absolute flex items-center justify-center -top-2 -right-3 md:top-1.5 md:right-1.5 block h-5 md:h-7.5 text-xs md:text-base leading-6 md:leading-9 px-2.5 md:px-3.5 rounded-full font-dana-DemiBold text-white dark:text-zinc-700 bg-orange-300">{off}</span>
                 )}
             </div>
 
@@ -31,12 +31,13 @@ function BestProduct({ id, name, img, off, disCount, price, gStar, sStar }) {
                     )
                 }
 
-                {disCount && (
+
+                <Activity mode={disCount ? "visible" : "hidden"}>
                     <div className="offer">
                         <span className="text-xs md:text-xl">{disCount}</span>
                         <span className="hidden xl:inline text-sm tracking-tighter">تومان</span>
                     </div>
-                )}
+                </Activity>
 
             </div>
 

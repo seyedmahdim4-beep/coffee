@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState ,Activity} from 'react'
+// import { Activity } from 'react';
 import Overlay from './Overlay';
+import ShopingProductDesktop from './ShopingProductDesktop';
+import { Link } from 'react-router';
+import { Theme } from '../Contexts/ThemeContext';
+import { useCart } from '../hooks/useCart';
 
-function Header({setShoppingOpen}) {
+function Header({ setShoppingOpen }) {
 
+    const { state: themeState, toggleTheme: changeTheme } = useContext(Theme)
+    const [cart, setCart] = useCart()
     const [open, setOpen] = useState(false);
     const [subOpen, setSubOpen] = useState(false);
     const [activeSub, setActiveSub] = useState(0);
     const [activeMenu, setActiveMenu] = useState(0);
-   
 
-    const toggleTheme = () => {
-        if (localStorage.theme === "dark") {
-            document.documentElement.classList.remove("dark");
-            localStorage.theme = "light";
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        }
-    }
-
+    const desktopPriceSum = cart.reduce((sum, item) => {
+        return sum + (
+            Number(String(item.price).replace(/,/g, "")) || 0
+        );
+    }, 0);
 
 
     return (
@@ -41,7 +42,7 @@ function Header({setShoppingOpen}) {
                             <li className="font-dana-Medium text-orange-200 "><a href="#">صفحه اصلی</a></li>
                             {/* <!-- Has Sub --> */}
                             <li className="relative group">
-                                <a className="group-hover:text-orange-300 transition-colors" href="#">فروشگاه</a>
+                                <a className="group-hover:text-orange-300 transition-colors" href="#shop">فروشگاه</a>
                                 {/* <!-- Sub Menu --> */}
                                 <div
                                     className="absolute opacity-0 invisible group-hover:opacity-100 group-hover:visible top-full p-6 space-y-4 w-52 text-zinc-700  dark:text-white bg-white dark:bg-zinc-700 text-base border-t-[3px] border-t-orange-300 tracking-normal rounded-2xl shadow-normal transition-all delay-75 child:inline-block child-hover:text-orange-300 ">
@@ -54,9 +55,9 @@ function Header({setShoppingOpen}) {
                                 </div>
                             </li>
                             <li><a href="#">دیکشنری</a></li>
-                            <li><a href="#">بلاگ</a></li>
-                            <li><a href="#">درباره ما</a></li>
-                            <li><a href="#"> تماس با ما</a></li>
+                            <li><a href="#blogs">بلاگ</a></li>
+                            <li><a href="#contact-us"> تماس با ما</a></li>
+                            <li><a href="#about-us">درباره ما</a></li>
                         </ul>
                     </nav>
 
@@ -75,11 +76,11 @@ function Header({setShoppingOpen}) {
                                 </div>
                                 {/* <!-- card box --> */}
                                 <div
-                                    className="absolute  left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible w-[400px] h-auto p-5  bg-white dark:bg-zinc-700 border-t-[3px] border-t-orange-300 rounded-2xl shadow-normal transition-all delay-75">
+                                    className="absolute  left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible w-[400px] h-[580px] p-5  bg-white dark:bg-zinc-700 border-t-[3px] border-t-orange-300 rounded-2xl shadow-normal transition-all delay-75">
                                     {/* <!-- card header --> */}
                                     <div className="flex items-center justify-between tracking-tighter  font-dana-Medium text-xs ">
 
-                                        <span className="text-gray-400">1مورد</span>
+                                        <span className="text-gray-400">{cart.length}مورد</span>
 
                                         <a href="#" className="flex items-center text-orange-300">
                                             مشاهده سبد خرید
@@ -92,62 +93,54 @@ function Header({setShoppingOpen}) {
 
                                     </div>
                                     {/* <!-- card body --> */}
-                                    <div className="flex gap-x-2.5 mt-5 pb-6 border-b border-b-gray-300 dark:border-b-white/10">
-                                        <img src="image/products/p1.png" className="w-30 h-30 " alt="product"></img>
 
-                                        <div className="flex flex-col justify-between">
-                                            <h4 className="font-dana-Medium text-zinc-700 dark:text-white text-base line-clamp-2">
-                                                قهوه ترک بن مانو 250 گرمی </h4>
-                                            <span
-                                                className="text-teal-600 dark:text-emerald-500 text-xs tracking-tighter mt-6 ">84,000
-                                                تومان تخفیف</span>
+                                    {cart.length != 0 ?
 
-                                            <div className="flex items-center gap-x-2">
-                                                <div className=" text-zinc-700 dark:text-white font-dana-DemiBold">616,000</div>
-                                                <span className="font-dana text-zinc-700 dark:text-white  text-sm ">تومان</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-x-2.5 mt-5 pb-6 border-b border-b-gray-300 dark:border-b-white/10">
-                                        <img src="image/products/p2.png" className="w-30 h-30 " alt="product"></img>
+                                        (<div className="h-[450px] overflow-y-auto">
+                                            {cart.map((item, index) => (
+                                                <ShopingProductDesktop key={`${item.id}-${index}`} {...item} setCart={setCart} />
+                                            ))}
+                                        </div>) :
+                                        (<div className="mr-30">
 
-                                        <div className="flex flex-col justify-between">
-                                            <h4 className="font-dana-Medium text-zinc-700 dark:text-white text-base line-clamp-2">
-                                                قهوه مانوکا بن مانو 250 گرمی</h4>
-                                            <span
-                                                className="hidden text-teal-600 dark:text-emerald-500 text-xs tracking-tighter mt-6 ">84,000
-                                                تومان تخفیف</span>
+                                            <svg className=" size-27   mt-41 text-gray-300 dark:text-white ">
+                                                <use href='#empty-basket' ></use  >
+                                            </svg>
+                                            <p className='font-Morabba-Bold text-orange-300 -mr-4.5 mt-12' >  سبد خرید خالی است! </p>
+                                        </div>)}
 
-                                            <div className="flex items-center gap-x-2">
-                                                <div className=" text-zinc-700 dark:text-white font-dana-DemiBold">890,000</div>
-                                                <span className="font-dana text-zinc-700 dark:text-white  text-sm ">تومان</span>
-                                            </div>
-                                        </div>
-                                    </div>
+
+
+
+
                                     {/* <!-- card footer --> */}
-                                    <div className="flex justify-between mt-5">
-                                        <div className="flex flex-col gap-y-4">
-                                            <span className="text-gray-400 text-xs tracking-tighter font-dana-Medium ">مبلغ قابل
-                                                پرداخت</span>
+                                    {cart.length == 0 ? "" : (
+                                        <Link to={'/buying'} className="flex justify-between mt-5">
+                                            <div className="flex flex-col gap-y-4">
+                                                <span className="text-gray-400 text-xs tracking-tighter font-dana-Medium ">مبلغ قابل
+                                                    پرداخت</span>
 
-                                            <div className="text-zinc-700 dark:text-white font-dana-DemiBold">
-                                                1,506,000
-                                                <span className="font-dana text-sm ">تومان</span>
+                                                <div className="text-zinc-700 dark:text-white font-dana-DemiBold">
+
+                                                    {desktopPriceSum.toLocaleString("fa-IR")}
+                                                    <span className="font-dana text-sm ">تومان</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <a className=" flex items-center justify-center p-6 text-lg text-white bg-teal-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-600 transition-colors h-14 w[144px] rounded-xl tracking-tightest "
-                                            href="#">ثبت سفارش</a>
-                                    </div>
+                                            <a className=" flex items-center justify-center p-6 text-lg text-white bg-teal-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-600 transition-colors h-14 w[144px] rounded-xl tracking-tightest "
+                                                href="#">ثبت سفارش</a>
+                                        </Link>
+                                    )}
+
                                 </div>
 
                             </div>
                             {/* <!-- theme switch btn --> */}
-                            <div className="toggle-theme cursor-pointer" onClick={toggleTheme} >
-                                <svg className=" inline-block dark:hidden w-8 h-8">
+                            <div className="toggle-theme cursor-pointer" onClick={changeTheme} >
+                                <svg className={`${themeState == `light` ? `inline-block` : 'hidden'} w-8 h-8`} >
                                     <use href="#moon"></use>
                                 </svg>
 
-                                <svg className="hidden dark:inline-block w-8 h-8">
+                                <svg className={`${themeState == `dark` ? `inline-block` : 'hidden'} w-8 h-8`}>
                                     <use href="#sun"></use>
                                 </svg>
                             </div>
@@ -337,20 +330,23 @@ function Header({setShoppingOpen}) {
 
                         <span className="flex items-center gap-x-2">
 
-                            <div className="toggle-theme" onClick={toggleTheme} >
-                                <div className="flex items-center gap-x-2 dark:hidden">
+                            <div className="toggle-theme" onClick={changeTheme} >
+                                {themeState == "light" ? (<div className="flex items-center gap-x-2 ">
                                     <svg className=" w-5 h-5 ">
                                         <use href="#moon"></use>
                                     </svg>
                                     <span>تم تیره</span>
-                                </div>
+                                </div>) : (
+                                    <div className=" dark:flex items-center gap-x-2 ">
+                                        <svg className=" w-5 h-5 ">
+                                            <use href="#sun"></use>
+                                        </svg>
+                                        <span>تم روشن</span>
+                                    </div>
+                                )}
 
-                                <div className="hidden dark:flex items-center gap-x-2 ">
-                                    <svg className=" w-5 h-5 ">
-                                        <use href="#sun"></use>
-                                    </svg>
-                                    <span>تم روشن</span>
-                                </div>
+
+
                             </div>
 
                         </span>
@@ -380,17 +376,34 @@ function Header({setShoppingOpen}) {
 
                 {/* <!-- card icon --> */}
 
-                <div onClick={() => { setShoppingOpen(true) }} >
+                <div className='flex' onClick={() => { setShoppingOpen(true) }} >
 
                     <svg className="shoppping-icon w-6  text-zinc-700 dark:text-white">
                         <use href="#shopping-card"></use>
+
                     </svg>
+
+
+                    <Activity mode={(cart.length != 0) ? "visible" : "hidden"} >
+
+                        <div className='absolute flex items-center justify-center w-5 h-5 mt-17.75 -mr-4.5 rounded-full text-white bg-orange-300'>
+
+                            <div className='text-xs font-bold' >
+                                {cart.length}
+                            </div>
+
+                        </div>
+
+                    </Activity>
+
 
                 </div>
 
+
+
             </div >
 
-           
+
             <Overlay open={open} onClose={() => setOpen(false)} />
 
         </>
